@@ -15,7 +15,7 @@ fn main(){
     for i in 0..5{  //range is not inclusive so it will be 0,1,2,3,4
        if i%2==0 {
             println!("Even {}",i);
-        } else{
+        } else{ //testing
             println!("Odd {}",i);
         }
      }
@@ -42,6 +42,8 @@ fn main(){
     z=6;
 
     //const keyword is used to define constants. It lives for the entire lifetime of a program but have no fixed address in memory. static keyword is used to define ‘global variable’ type facility. There is only one instance for each value, and it’s at a fixed location in memory.
+    //
+    //
 
 
 
