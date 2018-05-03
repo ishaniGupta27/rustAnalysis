@@ -6,7 +6,7 @@ int main(){
 	st=clock();
 	printf("Hello,World!");
 	end=clock();
-	double cpu_time_used = (((double) (end - st)) / CLOCKS_PER_SEC);
+	double cpu_time_used = (((double) (end - st)) / CLOCKS_PER_SEC)*(1000000000);
 	printf("\n %lf",cpu_time_used);
 	return 0;
 
