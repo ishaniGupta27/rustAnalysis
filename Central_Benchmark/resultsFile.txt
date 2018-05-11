@@ -1,3 +1,4 @@
-helloWorldC,2,0.00489497184753
-helloWorldR,2,0.00659894943237
-matrixMultiplicationC,2,1.89199209213
+helloWorldC,2,0.00840699672699
+helloWorldR,2,0.0103214979172
+matrixMultiplicationC,2,1.84627151489
+matrixMultiplicationR,2,0.783934950829

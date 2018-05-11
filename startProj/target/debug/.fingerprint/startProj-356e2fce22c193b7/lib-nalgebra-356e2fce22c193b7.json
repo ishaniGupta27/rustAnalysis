@@ -1,0 +1,1 @@
+{"rustc":8944277567884248514,"features":"[]","target":13306991937002099428,"profile":18326303544441293006,"path":10872709659218687626,"deps":[["regex v0.1.80",10767120499441341830],["time v0.1.40",17908366359193450712]],"local":[{"MtimeBased":[[1526028734,752767542],".fingerprint/startProj-356e2fce22c193b7/dep-lib-nalgebra-356e2fce22c193b7"]}],"rustflags":[]}
