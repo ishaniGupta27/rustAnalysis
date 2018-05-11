@@ -25,9 +25,12 @@ Using git projects to plan every weeks work. I am maintaining the To-Dos , In Pr
 1. Rust: Many things are unstable in rust like its test and bencher crate so I can not find any solution to use them till now. 
 2. I have made a basic hello world testing environment for C and Rust. I am using C: clock() and Rust : Instant::now(). 
 3. Another things to be pondered upon is precision . I am not getting very high precision in C unlike in Rust library for time keeping.
+4. How Am I benchmarking it ? Should I have a standard python script which will call all the functions executable so only runtime ? 
+5. Write *Native* Matrix Multiplication in both the languages.
 
 # Next :
 
-0. How Am I benchmarking it ? Should I have a standard python script which will call all the functions executable so only runtime ? 
-1. Write *Native* Matrix Multiplication in both the languages.
-2. Write *Sudoku* Benchmark on both the languages. Read what all are the graphs needed at end. time taken is one. Memory Usage . Line of code. 
+1. Write down heapsort in rust 
+2. Implement in bash
+3. Memory ??
+4. Write *Sudoku* Benchmark on both the languages. Read what all are the graphs needed at end. time taken is one. Memory Usage . Line of code. 
