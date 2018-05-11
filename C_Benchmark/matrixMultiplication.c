@@ -256,7 +256,7 @@ float **mat_mul6(int n_a_rows, int n_a_cols, float *const *a, int n_b_cols, floa
 
 int main(int argc, char *argv[])
 {
-	int c, n = 1000, algo = 2;
+	int c, n = 100, algo = 2;
 	clock_t t;
 	float **a, **b, **m = 0;
 
