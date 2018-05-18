@@ -1,4 +1,5 @@
-helloWorldC,2,0.0103354454041
-helloWorldR,2,0.0128910541534
-matrixMultiplicationC,2,0.010346531868
-matrixMultiplicationR,2,0.179275989532
+helloWorldC,2,0.00865507125854
+helloWorldR,2,0.0181050300598
+matrixMultiplicationC,2,0.00875306129456
+matrixMultiplicationR,2,0.146147489548
+heapsortNewC,2,0.00513899326324
