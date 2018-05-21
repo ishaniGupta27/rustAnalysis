@@ -3,3 +3,5 @@ helloWorldR
 matrixMultiplicationC
 matrixMultiplicationR
 heapsortNewC
+NBodyC
+NBodyR
