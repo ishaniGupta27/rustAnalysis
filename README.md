@@ -34,3 +34,12 @@ Using git projects to plan every weeks work. I am maintaining the To-Dos , In Pr
 2. Implement in bash
 3. Memory ??
 4. Write *Sudoku* Benchmark on both the languages. Read what all are the graphs needed at end. time taken is one. Memory Usage . Line of code. 
+
+# Presentation Goals :
+
+1. Introduce 3 features novel to Rust --> Ownership , Concurrency , ??
+2. Benchmarking any one of these features.--> 3 to 4 benchmarks for same feature.
+3. Benchmarking on different machines
+4. Least Preference : Benchmarking within Rust.
+
+
