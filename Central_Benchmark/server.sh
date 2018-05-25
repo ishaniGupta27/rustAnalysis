@@ -4,7 +4,7 @@ output_file='resultsFileBash.txt'
 while read exec; do
 	command_to_run="./Executables/"$exec;
 	echo 'Benchmarking ' $exec;
-
+    sum=0.0
 	for (( i = 1; i <= $repeats ; i++ ))
     do
         # percentage completion
@@ -23,14 +23,16 @@ while read exec; do
         #stime="$( TIMEFORMAT='%S';time ${command_to_run} 2>&1 1>/dev/null )"
         #echo 'systime' $stime
 
-        echo 'ttime'
-        #ttime=`echo "($utime)+($stime)" | bc` 
+        #echo 'ttime'
+        ttime=$(echo $( TIMEFORMAT="%3U + %3S"; { time ${command_to_run}; } 2>&1 1>/dev/null) "*1000" | bc -l)
         #echo "$ttime"
 
-        ttime=$(echo $( TIMEFORMAT="%3U + %3S"; { time ${command_to_run}; } 2>&1 1>/dev/null) "*1000" | bc -l)
-        echo "$ttime"
+        sum=`echo "$sum+$ttime" | bc -l`
+
         #echo -ne ${l}' ('${p}'%) \r' #for the progress
     done;
+    echo 'sum'
+    echo $sum >> $output_file
     #echo -ne '\n'
 
     # Convenience seperator for file
