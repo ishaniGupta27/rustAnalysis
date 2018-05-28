@@ -1,9 +1,11 @@
 #!/bin/bash
-repeats=3
+
+repeats=50
 output_file='resultsFileBash.txt'
 while read exec; do
-	command_to_run="./Executables/"$exec;
-	echo 'Benchmarking ' $exec;
+    
+	command_to_run="./Executables/"$exec" 4";
+	echo 'Benchmarking ' $command_to_run;
     sum=0.0
 	for (( i = 1; i <= $repeats ; i++ ))
     do
@@ -31,7 +33,7 @@ while read exec; do
 
         #echo -ne ${l}' ('${p}'%) \r' #for the progress
     done;
-    echo 'sum'
+    #echo 'sum'
     echo $sum >> $output_file
     #echo -ne '\n'
 

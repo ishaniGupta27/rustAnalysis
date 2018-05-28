@@ -8,13 +8,14 @@ use std::sync::mpsc;
 
 fn main() {
 	let (tx, rx): (mpsc::Sender<i32>, mpsc::Receiver<i32>) = mpsc::channel();
-	let mut array: [i32; 200]= [0; 200] ;
-	for i in 0..200 { //index starts at 0, 200 not included
+	const n: usize=200; //total slots
+	let t=4;  //threads number
+	let mut array: [i32; n]= [0; n] ;
+	for i in 0..n { //index starts at 0, 200 not included
 		array[i]=i as i32;
 	}
 
-	let n=200; //total slots
-	let t=8;  //threads number
+	
 
 	let slot_size= n/t;
 	println!("hi numbers {} handled by single thread", slot_size);
@@ -36,14 +37,16 @@ fn main() {
 	            //println!("Got up");
 	        }
 	        println!("hi going to sum from {} to {} from the spawned thread! total..{}", inside_start,inside_end,sum);
-	        child_tx.send(sum).unwrap();;
+	        child_tx.send(sum);
 
 		});
 		start=end+1;
 		end=start+slot_size-1;
 	}
-
-	let result = rx.recv().unwrap() + rx.recv().unwrap() + rx.recv().unwrap() +rx.recv().unwrap() + rx.recv().unwrap() + rx.recv().unwrap() + rx.recv().unwrap() + rx.recv().unwrap();
+	let mut result = rx.recv().unwrap();
+	for i in 1..t {
+	result = result+ rx.recv().unwrap();
+	}
 	//let result = rx.iter();
 	//for i in 1..5 {
         println!("hi number {} is Result !!!", result);

@@ -1,5 +1,1 @@
-helloWorldC
-helloWorldR
-matrixMultiplicationC
-matrixMultiplicationR
-heapsortNewC
+threadsFirstR
