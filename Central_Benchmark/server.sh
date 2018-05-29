@@ -1,10 +1,10 @@
 #!/bin/bash
 
-repeats=500
+repeats=5
 output_file='resultsFileBash.txt'
 while read exec; do
     
-	command_to_run="./Executables/"$exec" 1";
+	command_to_run="./Executables/"$exec" 3";
 	echo 'Benchmarking ' $command_to_run;
     sum=0.0
 	for (( i = 1; i <= $repeats ; i++ ))

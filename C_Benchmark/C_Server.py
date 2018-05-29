@@ -12,5 +12,5 @@ content = [x.strip() for x in content]
 for cProgram in content:
 
 	cProgramRun=cProgram+'.c';
-	objectName= '/Users/ishaniGupta/Library/Mobile Documents/com~apple~CloudDocs/UCSB_3/Runtime System/Code/rustAnalysis/Central_Benchmark/Executables/'+cProgram+'C'
+	objectName= '../Central_Benchmark/Executables/'+cProgram+'C'
 	call(['gcc','-o',objectName,cProgramRun])
