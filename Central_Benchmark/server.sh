@@ -1,10 +1,10 @@
 #!/bin/bash
 
-repeats=50
+repeats=500
 output_file='resultsFileBash.txt'
 while read exec; do
     
-	command_to_run="./Executables/"$exec" 4";
+	command_to_run="./Executables/"$exec" 1";
 	echo 'Benchmarking ' $command_to_run;
     sum=0.0
 	for (( i = 1; i <= $repeats ; i++ ))
@@ -17,7 +17,7 @@ while read exec; do
         # runs time function for the called script, output in a comma seperated
         # format output file specified with -o command and -a specifies append
         #/usr/bin/time -lp "%E,%U,%S" -o ${output_file} -a ${command_to_run} > ${output_file} 2>&1
-        
+        #curl https://sh.rustup.rs -sSf | sh
        	#(time ${command_to_run}) 2>>${output_file} #>> will append whereas > will wipe out !
     	#utime="$( TIMEFORMAT='%U';time ${command_to_run} 2>&1 1>/dev/null )"
         #echo 'usertime' $utime
