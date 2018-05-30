@@ -1,3 +1,6 @@
 Total Sum 1336
 Total net loops... 2
 --------------------------
+Total Sum 6052
+Total net loops... 7
+--------------------------
