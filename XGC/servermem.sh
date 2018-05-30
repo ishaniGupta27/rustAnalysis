@@ -1,10 +1,10 @@
 #!/bin/bash
 
-repeats=10
+repeats=50
 output_file='resultsFileBashRustMem.txt'
 while read exec; do
     
-	command_to_run="./memusg2 ./Executables/"$exec"";
+	command_to_run="./memusg3 ./Executables/"$exec"";
 	echo 'Benchmarking ' $command_to_run;
     sum=0
     zeroVal=0
@@ -27,14 +27,14 @@ while read exec; do
         #echo 'systime' $stime
 
         #echo 'ttime'
-       # echo 'yo'
+        #echo 'yo'
         memy=`${command_to_run}` #>> $output_file
-        if [ $memy -eq 0 ]
+        if [[ $memy -eq 0 ]]
         then
             #echo Zero
             zeroVal=$((zeroVal + 1))
         fi
-        #echo "memy ""$memy"
+       # echo "memy ""$memy"
         
         sum=$((sum + memy))
         #echo "sum" "$sum"

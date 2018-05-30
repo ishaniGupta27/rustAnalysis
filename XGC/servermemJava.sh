@@ -1,10 +1,10 @@
 #!/bin/bash
 
-repeats=10
-output_file='resultsFileBashRustMemJava.txt'
+repeats=50
+output_file='resultsFileBashJavaMem.txt'
 while read exec; do
     
-	command_to_run="./memusg2 java Test";
+	command_to_run="./memusg3 java Test";
 	echo 'Benchmarking ' $command_to_run;
     sum=0
     zeroVal=0

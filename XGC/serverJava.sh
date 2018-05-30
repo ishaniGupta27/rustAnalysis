@@ -1,6 +1,6 @@
 #!/bin/bash
 
-repeats=500
+repeats=50
 output_file='resultsFileBashJava.txt'
 while read exec; do
     
