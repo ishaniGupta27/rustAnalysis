@@ -1,1 +1,0 @@
-/Users/ishaniGupta/Library/Mobile\ Documents/com~apple~CloudDocs/UCSB_3/Runtime\ System/Code/rustAnalysis/startProj/target/release/libstartProj.rlib: /Users/ishaniGupta/Library/Mobile\ Documents/com~apple~CloudDocs/UCSB_3/Runtime\ System/Code/rustAnalysis/startProj/src/lib.rs

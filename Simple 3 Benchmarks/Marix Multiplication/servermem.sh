@@ -1,10 +1,10 @@
 #!/bin/bash
 
 repeats=50
-output_file='resultsFileBashRustMem.txt'
+output_file='resultsMemory.txt'
 while read exec; do
     
-	command_to_run="./memusg3 ./Executables/"$exec"";
+	command_to_run="./memusg3 ./Executables/"$exec"  < revcomp-input100000000.txt ";
 	echo 'Benchmarking ' $command_to_run;
     sum=0
     zeroVal=0
@@ -26,9 +26,9 @@ while read exec; do
         #stime="$( TIMEFORMAT='%S';time ${command_to_run} 2>&1 1>/dev/null )"
         #echo 'systime' $stime
 
-        #echo 'ttime'
+        #echo 'ttime'.r
         #echo 'yo'
-        memy=`${command_to_run}` #>> $output_file
+        memy=`${command_to_run} 2>&1 1>/dev/null`  #>> $output_file
         if [[ $memy -eq 0 ]]
         then
             #echo Zero
@@ -44,8 +44,9 @@ while read exec; do
     done;
     #echo 'sum'
     totalLoop=$((repeats - zeroVal))
+    echo 'Test For..' $exec >> $output_file
     echo "Total Sum" $sum >> $output_file
-    echo "Total net loops..." $totalLoop >> $output_file
+    echo "Total Iterations..." $totalLoop >> $output_file
     #echo -ne '\n'
 
     # Convenience seperator for file

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 repeats=50
-output_file='resultsFileBashRust.txt'
+output_file='resultsTime.txt'
 while read exec; do
     
 	command_to_run="./Executables/"$exec"";
@@ -26,7 +26,7 @@ while read exec; do
         #echo 'systime' $stime
 
         #echo 'ttime'
-        ttime=$(echo $( TIMEFORMAT="%3U + %3S"; { time ${command_to_run}; } 2>&1 1>/dev/null) "*1000" | bc -l)
+        ttime=$(echo $( TIMEFORMAT="%3U + %3S"; { time ${command_to_run} < revcomp-input100000000.txt; } 2>&1 1>/dev/null) "*1000" | bc -l)
         #echo "$ttime"
 
         sum=`echo "$sum+$ttime" | bc -l`
@@ -34,10 +34,12 @@ while read exec; do
         #echo -ne ${l}' ('${p}'%) \r' #for the progress
     done;
     #echo 'sum'
-    echo $sum >> $output_file
+    echo 'Test For..' $exec >> $output_file
+    echo 'Total Time..' $sum >> $output_file
+    echo 'Total Iterations..' $repeats >> $output_file
     #echo -ne '\n'
 
     # Convenience seperator for file
-    #echo '--------------------------' >> $output_file
+    echo '--------------------------' >> $output_file
 
 done < execToRun.txt

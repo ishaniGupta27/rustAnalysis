@@ -34,7 +34,8 @@ def log(msg):
 def get_vsize(sid):
     vsize = 0
     # Example: /bin/ps -o vsize= --sid 23928
-    proc = Popen(['/bin/ps', '-o', 'rss=', '--sid', str(sid)], stdout=PIPE, stderr=None, shell=False)
+    #proc = Popen(['/bin/ps', '-o', 'rss=', '--sid', str(sid)], stdout=PIPE, stderr=None, shell=False)
+    proc = Popen(['/bin/ps', '-o', 'rss=', '-g', str(sid)], stdout=PIPE, stderr=None, shell=False) #--> Mac
     (stdout, _stderr) = proc.communicate()
     # Iterate over each process within the process tree of our process session
     # (this ensures that we include processes launched by a child bash script, etc.)
@@ -77,7 +78,7 @@ if fork_pid == 0:
         sleep(0.1) # Time in seconds (float)
     
     #out.write("memusg: vmpeak: {} kb\n".format(vmpeak))
-    sys.stdout.write(str(vmpeak))
+    sys.stderr.write(str(vmpeak))
     #out.write("{}".format(vmpeak))
     status = proc.returncode
     log("Child process returned {}".format(status))
