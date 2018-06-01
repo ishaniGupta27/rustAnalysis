@@ -1,139 +1,161 @@
-// The Computer Language Benchmarks Game
-// http://benchmarksgame.alioth.debian.org/
-//
-// Contributed by Jeremy Zerfas
-// Based on the C++ program from Jon Harrop, Alex Mizrahi, and Bruno Coutinho.
-// *reset*
+// +build ignore
 
-// This controls the width of lines that are output by this program.
-#define MAXIMUM_LINE_WIDTH  60
+/*
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+    * Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+    * Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in the
+    documentation and/or other materials provided with the distribution.
+    * Neither the name of "The Computer Language Benchmarks Game" nor the
+    name of "The Computer Language Shootout Benchmarks" nor the names of
+    its contributors may be used to endorse or promote products derived
+    from this software without specific prior written permission.
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+POSSIBILITY OF SUCH DAMAGE.
+*/
 
-#include <stdint.h>
-#include <stdlib.h>
+/* The Computer Language Shootout Benchmarks
+   http://shootout.alioth.debian.org/
+   contributed by Kevin Carson
+   compilation:
+       gcc -O3 -fomit-frame-pointer -funroll-loops -static binary-trees.c -lm
+       icc -O3 -ip -unroll -static binary-trees.c -lm
+*/
+
+#include <math.h>
 #include <stdio.h>
-
-typedef off_t off64_t; // This is needed to keep APR happy on 32 bit systems.
-#include <apr_pools.h>
-
-// intptr_t should be the native integer type on most sane systems.
-typedef intptr_t intnative_t;
-
-typedef struct tree_node{
-   struct tree_node   * left_Node, * right_Node;
-} tree_node;
+#include <stdlib.h>
 
 
-// Create a binary tree of depth tree_Depth in memory_Pool, set the root node's
-// value to root_Node_Value, and finally return a pointer to the created binary
-// tree.
-static inline tree_node * create_Tree(const intnative_t tree_Depth, 
-  apr_pool_t * const memory_Pool){
-   tree_node * const root_Node=apr_palloc(memory_Pool, sizeof(tree_node));
-
-   // If tree_Depth is one or more then recursively call create_Tree() in order
-   // to create the left and right subtrees using 2*root_Node_Value-1 and
-   // 2*root_Node_Value respectively as the root values for those subtrees.
-   if(tree_Depth>0){
-      root_Node->left_Node=create_Tree(tree_Depth-1, memory_Pool);
-      root_Node->right_Node=create_Tree(tree_Depth-1, memory_Pool);
-   }else
-      root_Node->left_Node=root_Node->right_Node=NULL;
-
-   return root_Node;
-}
+typedef struct tn {
+    struct tn*    left;
+    struct tn*    right;
+    long          item;
+} treeNode;
 
 
-// Compute and return the checksum for the binary tree that has root_Node as the
-// root node.
-static inline intnative_t compute_Tree_Checksum(
-  const tree_node * const root_Node){
-   // If there are subtrees then recursively call compute_Tree_Checksum() on
-   // them and factor their values into the checksum, otherwise just return
-   // the value of root_Node.
-   if(root_Node->left_Node)
-      return compute_Tree_Checksum(root_Node->left_Node)+
-        compute_Tree_Checksum(root_Node->right_Node)+1;
-   else
-      return 1;
-}
+treeNode* NewTreeNode(treeNode* left, treeNode* right, long item)
+{
+    treeNode*    new;
+
+    new = (treeNode*)malloc(sizeof(treeNode));
+
+    new->left = left;
+    new->right = right;
+    new->item = item;
+
+    return new;
+} /* NewTreeNode() */
 
 
-int main(int argc, char ** argv){
-   // Set minimum_Tree_Depth to 4 and maximum_Tree_Depth to the maximum of what
-   // was specified as the argument to the program and minimum_Tree_Depth+2.
-   const intnative_t minimum_Tree_Depth=4;
-   intnative_t maximum_Tree_Depth=atoi(argv[1]);
-   if(maximum_Tree_Depth < minimum_Tree_Depth+2)
-      maximum_Tree_Depth=minimum_Tree_Depth+2;
+long ItemCheck(treeNode* tree)
+{
+    if (tree->left == NULL)
+        return tree->item;
+    else
+        return tree->item + ItemCheck(tree->left) - ItemCheck(tree->right);
+} /* ItemCheck() */
 
-   apr_initialize();
-   apr_pool_t * memory_Pool;
 
-   // Create a memory pool, create a binary tree of depth maximum_Tree_Depth+1,
-   // compute the checksum of the binary tree, print the statistics, and then
-   // delete the memory pool.
-   apr_pool_create_unmanaged(&memory_Pool);
-   tree_node * stretch_Tree=create_Tree(maximum_Tree_Depth+1, memory_Pool);
-   printf("stretch tree of depth %jd\t check: %jd\n",
-     (intmax_t)maximum_Tree_Depth+1,
-     (intmax_t)compute_Tree_Checksum(stretch_Tree));
-   apr_pool_destroy(memory_Pool);
+treeNode* BottomUpTree(long item, unsigned depth)
+{
+    if (depth > 0)
+        return NewTreeNode
+        (
+            BottomUpTree(2 * item - 1, depth - 1),
+            BottomUpTree(2 * item, depth - 1),
+            item
+        );
+    else
+        return NewTreeNode(NULL, NULL, item);
+} /* BottomUpTree() */
 
-   // Create a memory pool and then create a long-lived binary tree of depth
-   // maximum_Tree_Depth which will be left alone for a while while
-   // more binary trees get allocated and deallocaited as required by the
-   // rules. We'll finish working with this later.
-   apr_pool_create_unmanaged(&memory_Pool);
-   tree_node * long_Lived_Tree=create_Tree(maximum_Tree_Depth, memory_Pool);
 
-   // Create a lot of binary trees in parallel of depths ranging from
-   // minimum_Tree_Depth to maximum_Tree_Depth, compute and tally up all their
-   // checksums, destroy the trees, and then record the statistics to
-   // output_Buffer[] so they can be displayed in order later.
-   char output_Buffer[maximum_Tree_Depth+1][MAXIMUM_LINE_WIDTH+1];
-   intnative_t current_Tree_Depth;
-   #pragma omp parallel for
-   for(current_Tree_Depth=minimum_Tree_Depth;
-     current_Tree_Depth<=maximum_Tree_Depth; current_Tree_Depth+=2){
-      intnative_t iterations=1<<(maximum_Tree_Depth-current_Tree_Depth+
-        minimum_Tree_Depth);
+void DeleteTree(treeNode* tree)
+{
+    if (tree->left != NULL)
+    {
+        DeleteTree(tree->left);
+        DeleteTree(tree->right);
+    }
 
-      // Create a memory pool for this thread to use.
-      apr_pool_t * thread_Memory_Pool;
-      apr_pool_create_unmanaged(&thread_Memory_Pool);
+    free(tree);
+} /* DeleteTree() */
 
-      intnative_t i=1, total_Trees_Checksum=0;
-      for(; i<=iterations; ++i){
-         // Create a binary tree of depth current_Tree_Depth
-         tree_node * const tree_1=create_Tree(current_Tree_Depth,
-           thread_Memory_Pool);
 
-         total_Trees_Checksum+=compute_Tree_Checksum(tree_1);
+int main(int argc, char* argv[])
+{
+    unsigned   N, depth, minDepth, maxDepth, stretchDepth;
+    treeNode   *stretchTree, *longLivedTree, *tempTree;
 
-         apr_pool_clear(thread_Memory_Pool);
-      }
+    N = atol(argv[1]);
 
-      apr_pool_destroy(thread_Memory_Pool);
+    minDepth = 4;
 
-      // Record the statistics for the trees of depth current_Tree_Depth.
-      sprintf(output_Buffer[current_Tree_Depth],
-        "%jd\t trees of depth %jd\t check: %jd\n", (intmax_t)iterations,
-        (intmax_t)current_Tree_Depth, (intmax_t)total_Trees_Checksum);
-   }
+    if ((minDepth + 2) > N)
+        maxDepth = minDepth + 2;
+    else
+        maxDepth = N;
 
-   // Print the statistics for all of the various tree depths.
-   for(current_Tree_Depth=minimum_Tree_Depth;
-     current_Tree_Depth<=maximum_Tree_Depth; current_Tree_Depth+=2)
-      printf("%s", output_Buffer[current_Tree_Depth]);
+    stretchDepth = maxDepth + 1;
 
-   // Compute the checksum of the long-lived binary tree that we created
-   // earlier, print the statistics, and then delete the memory pool.
-   printf("long lived tree of depth %jd\t check: %jd\n",
-     (intmax_t)maximum_Tree_Depth,
-     (intmax_t)compute_Tree_Checksum(long_Lived_Tree));
-   apr_pool_destroy(memory_Pool);
+    stretchTree = BottomUpTree(0, stretchDepth);
+    printf
+    (
+        "stretch tree of depth %u\t check: %li\n",
+        stretchDepth,
+        ItemCheck(stretchTree)
+    );
 
-   apr_terminate();
-   return 0;
-}
-  
+    DeleteTree(stretchTree);
+
+    longLivedTree = BottomUpTree(0, maxDepth);
+
+    for (depth = minDepth; depth <= maxDepth; depth += 2)
+    {
+        long    i, iterations, check;
+
+        iterations = pow(2, maxDepth - depth + minDepth);
+
+        check = 0;
+
+        for (i = 1; i <= iterations; i++)
+        {
+            tempTree = BottomUpTree(i, depth);
+            check += ItemCheck(tempTree);
+            DeleteTree(tempTree);
+
+            tempTree = BottomUpTree(-i, depth);
+            check += ItemCheck(tempTree);
+            DeleteTree(tempTree);
+        } /* for(i = 1...) */
+
+        printf
+        (
+            "%li\t trees of depth %u\t check: %li\n",
+            iterations * 2,
+            depth,
+            check
+        );
+    } /* for(depth = minDepth...) */
+
+    printf
+    (
+        "long lived tree of depth %u\t check: %li\n",
+        maxDepth,
+        ItemCheck(longLivedTree)
+    );
+
+    return 0;
+} /* main() */
