@@ -1,0 +1,25 @@
+Test For.. java pidigits
+Total Time..
+Total Iterations.. 50
+Input.. 100
+--------------------------
+Test For.. java pidigits
+Total Time..
+Total Iterations.. 50
+Input.. 500
+--------------------------
+Test For.. java pidigits
+Total Time.. 2947.449
+Total Iterations.. 50
+Input.. 100
+--------------------------
+Test For.. java pidigits
+Total Time.. 3908.965
+Total Iterations.. 50
+Input.. 500
+--------------------------
+Test For.. java pidigits
+Total Time.. 13708.413
+Total Iterations.. 50
+Input.. 2500
+--------------------------

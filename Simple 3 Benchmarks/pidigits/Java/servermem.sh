@@ -5,7 +5,7 @@ output_file='resultsMemory.txt'
 while read input; do
     while read exec; do
         
-    	command_to_run="./memusg3 ./Executables/"$exec" "$input"";
+    	command_to_run="./memusg3 "$exec" "$input"";
     	echo 'Benchmarking ' $command_to_run;
         sum=0
         zeroVal=0

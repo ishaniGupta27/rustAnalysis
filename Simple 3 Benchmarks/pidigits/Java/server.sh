@@ -1,14 +1,14 @@
 #!/bin/bash
 
 repeats=50
-output_file='resultsMemory.txt'
+output_file='resultsTime.txt'
+
 while read input; do
     while read exec; do
         
-    	command_to_run="./memusg3 ./Executables/"$exec" "$input"";
+    	command_to_run=""$exec" "$input"";
     	echo 'Benchmarking ' $command_to_run;
-        sum=0
-        zeroVal=0
+        sum=0.0
     	for (( i = 1; i <= $repeats ; i++ ))
         do
             # percentage completion
@@ -27,27 +27,18 @@ while read input; do
             #stime="$( TIMEFORMAT='%S';time ${command_to_run} 2>&1 1>/dev/null )"
             #echo 'systime' $stime
 
-            #echo 'ttime'.r
-            #echo 'yo'
-            memy=`${command_to_run} 2>&1 1>/dev/null`  #>> $output_file
-            if [[ $memy -eq 0 ]]
-            then
-                #echo Zero
-                zeroVal=$((zeroVal + 1))
-            fi
-           # echo "memy ""$memy"
-            
-            sum=$((sum + memy))
-            #echo "sum" "$sum"
+            #echo 'ttime'
+            ttime=$(echo $( TIMEFORMAT="%3U + %3S"; { time ${command_to_run}; } 2>&1 1>/dev/null) "*1000" | bc -l)
+            #echo "$ttime"
 
-            
+            sum=`echo "$sum+$ttime" | bc -l`
+
             #echo -ne ${l}' ('${p}'%) \r' #for the progress
         done;
         #echo 'sum'
-        totalLoop=$((repeats - zeroVal))
         echo 'Test For..' $exec >> $output_file
-        echo "Total Sum" $sum >> $output_file
-        echo "Total Iterations..." $totalLoop >> $output_file
+        echo 'Total Time..' $sum >> $output_file
+        echo 'Total Iterations..' $repeats >> $output_file
         echo 'Input..' $input >> $output_file
         #echo -ne '\n'
 

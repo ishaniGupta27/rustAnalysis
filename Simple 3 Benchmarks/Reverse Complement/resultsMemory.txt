@@ -6,3 +6,7 @@ Test For.. revR
 Total Sum 173620
 Total Iterations... 50
 --------------------------
+Test For.. java revcomp
+Total Sum 1660196
+Total Iterations... 50
+--------------------------

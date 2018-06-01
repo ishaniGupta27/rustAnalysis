@@ -1,0 +1,50 @@
+Test For.. piR
+Total Sum 113900
+Total Iterations... 50
+Input.. 100
+--------------------------
+Test For.. piC
+Total Sum 112956
+Total Iterations... 50
+Input.. 100
+--------------------------
+Test For.. piR
+Total Sum 114472
+Total Iterations... 50
+Input.. 500
+--------------------------
+Test For.. piC
+Total Sum 113896
+Total Iterations... 50
+Input.. 500
+--------------------------
+Test For.. piR
+Total Sum 112240
+Total Iterations... 50
+Input.. 2500
+--------------------------
+Test For.. piC
+Total Sum 116760
+Total Iterations... 50
+Input.. 2500
+--------------------------
+Test For.. piR
+Total Sum 264388
+Total Iterations... 50
+Input.. 12500
+--------------------------
+Test For.. piC
+Total Sum 169120
+Total Iterations... 50
+Input.. 12500
+--------------------------
+Test For.. piR
+Total Sum 118332
+Total Iterations... 50
+Input..
+--------------------------
+Test For.. piC
+Total Sum 114664
+Total Iterations... 50
+Input..
+--------------------------
