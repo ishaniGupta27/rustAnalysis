@@ -141,21 +141,21 @@ int main(int argc, char* argv[])
             DeleteTree(tempTree);
         } /* for(i = 1...) */
 
-        printf
+        /*printf
         (
             "%li\t trees of depth %u\t check: %li\n",
             iterations * 2,
             depth,
             check
-        );
+        );*/
     } /* for(depth = minDepth...) */
 
-    printf
+    /*printf
     (
         "long lived tree of depth %u\t check: %li\n",
         maxDepth,
         ItemCheck(longLivedTree)
-    );
+    );*/
 
     return 0;
 } /* main() */

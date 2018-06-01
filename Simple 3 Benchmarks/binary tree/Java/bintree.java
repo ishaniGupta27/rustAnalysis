@@ -42,12 +42,12 @@ public class bintree {
         EXECUTOR_SERVICE.shutdown();
         EXECUTOR_SERVICE.awaitTermination(120L, TimeUnit.SECONDS);
 
-        for (final String str : results) {
-            System.out.println(str);
-        }
+        //for (final String str : results) {
+            //System.out.println(str);
+        //}
 
-        System.out.println("long lived tree of depth " + maxDepth + 
-            "\t check: " + longLivedTree.itemCheck());
+        //System.out.println("long lived tree of depth " + maxDepth + 
+            //"\t check: " + longLivedTree.itemCheck());
     }
 
     private static TreeNode bottomUpTree(final int depth) {
