@@ -4,7 +4,7 @@ repeats=50
 output_file='resultsMemory.txt'
 while read exec; do
     
-	command_to_run="./memusg3 ./Executables/"$exec"  < revcomp-input100000000.txt ";
+	command_to_run="./memusg3 "$exec"  < revcomp-input100000000.txt ";
 	echo 'Benchmarking ' $command_to_run;
     sum=0
     zeroVal=0

@@ -4,7 +4,7 @@ repeats=50
 output_file='resultsTime.txt'
 while read exec; do
     
-	command_to_run="./Executables/"$exec"";
+	command_to_run="$exec";
 	echo 'Benchmarking ' $command_to_run;
     sum=0.0
 	for (( i = 1; i <= $repeats ; i++ ))
