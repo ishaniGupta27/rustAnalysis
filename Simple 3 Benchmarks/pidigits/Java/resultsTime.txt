@@ -1,25 +1,35 @@
-Test For.. java pidigits
-Total Time..
+Test For.. java HelloWorld
+Total Time.. 249.940
 Total Iterations.. 50
 Input.. 100
 --------------------------
 Test For.. java pidigits
-Total Time..
-Total Iterations.. 50
-Input.. 500
---------------------------
-Test For.. java pidigits
-Total Time.. 2947.449
+Total Time.. 287.684
 Total Iterations.. 50
 Input.. 100
 --------------------------
-Test For.. java pidigits
-Total Time.. 3908.965
+Test For.. java HelloWorld
+Total Time.. 189.876
 Total Iterations.. 50
 Input.. 500
 --------------------------
 Test For.. java pidigits
-Total Time.. 13708.413
+Total Time.. 363.400
+Total Iterations.. 50
+Input.. 500
+--------------------------
+Test For.. java HelloWorld
+Total Time.. 249.784
 Total Iterations.. 50
 Input.. 2500
+--------------------------
+Test For.. java pidigits
+Total Time.. 1249.568
+Total Iterations.. 50
+Input.. 2500
+--------------------------
+Test For.. java HelloWorld
+Total Time.. 205.932
+Total Iterations.. 50
+Input.. 12500
 --------------------------

@@ -9,7 +9,8 @@ public class pidigits {
    static final int L = 10;
 
    public static void main(String args[]) {
-      int n = Integer.parseInt(args[0]);
+       System.out.println("Hello, World");
+	int n = Integer.parseInt(args[0]);
       int j = 0;
 
       PiDigitSpigot digits = new PiDigitSpigot();
