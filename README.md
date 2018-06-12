@@ -1,5 +1,6 @@
 # rustAnalysis
 Does Rust really do what everyone claims it do?
+Presentation : https://docs.google.com/presentation/d/14W6bwEfNapSeCpTKXIb4FNrGCP4jhmQcUqgtRlBIn-o/edit?usp=sharing
 
 # Setup 
 
@@ -27,19 +28,16 @@ Using git projects to plan every weeks work. I am maintaining the To-Dos , In Pr
 3. Another things to be pondered upon is precision . I am not getting very high precision in C unlike in Rust library for time keeping.
 4. How Am I benchmarking it ? Should I have a standard python script which will call all the functions executable so only runtime ? 
 5. Write *Native* Matrix Multiplication in both the languages.
-
-# Next :
-
-1. Write down heapsort in rust 
-2. Implement in bash
-3. Memory ??
-4. Write *Sudoku* Benchmark on both the languages. Read what all are the graphs needed at end. time taken is one. Memory Usage . Line of code. 
+6. Write down heapsort in rust 
+7. Implement in bash
+8. Memory Evaluation
+9. Write *Sudoku* Benchmark on three the languages. Read what all are the graphs needed at end. time taken is one. Memory Usage . 
 
 # Presentation Goals :
 
-1. Introduce 3 features novel to Rust --> Ownership , Concurrency , ??
-2. Benchmarking any one of these features.--> 3 to 4 benchmarks for same feature.
+1. Introduce features novel to Rust --> Ownership 
+2. Benchmarking on different languages.
 3. Benchmarking on different machines
-4. Least Preference : Benchmarking within Rust.
+4. Mathematical model to unify and quantify the benchmarks.
 
 
