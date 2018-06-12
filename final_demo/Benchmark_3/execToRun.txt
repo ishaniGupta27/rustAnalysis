@@ -1,0 +1,3 @@
+./Executables/piC
+./Executables/piR
+java pidigits
