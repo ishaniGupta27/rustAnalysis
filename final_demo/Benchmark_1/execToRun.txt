@@ -1,0 +1,5 @@
+./Executables/revC
+./Executables/revR 0
+java revcomp 0
+
+
