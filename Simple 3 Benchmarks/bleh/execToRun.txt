@@ -1,3 +1,0 @@
-./fastC
-./fastR
-java fasta

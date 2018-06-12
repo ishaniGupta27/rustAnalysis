@@ -1,5 +1,0 @@
-helloWorldC
-helloWorldR
-matrixMultiplicationC
-matrixMultiplicationR
-heapsortNewC
