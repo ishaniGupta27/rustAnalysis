@@ -35,7 +35,7 @@ while read exec; do
     done;
     #echo 'sum'
     echo 'Test For..' $exec >> $output_file
-    echo 'Total Time..' $sum >> $output_file
+    echo 'Time..' $sum >> $output_file
     echo 'Total Iterations..' $repeats >> $output_file
     #echo -ne '\n'
 
